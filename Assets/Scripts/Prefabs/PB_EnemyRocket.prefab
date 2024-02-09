@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 16405038581893716}
   - component: {fileID: 3376122471065456271}
   m_Layer: 0
-  m_Name: E_EnemyRocket
+  m_Name: PB_EnemyRocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
