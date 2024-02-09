@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RocketController : MonoBehaviour
+public class PlayerRocketController : MonoBehaviour
 {
     public float rocketSpeed = 30f;
 

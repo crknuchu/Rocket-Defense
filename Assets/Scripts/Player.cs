@@ -7,14 +7,12 @@ public class Player : MonoBehaviour
     public GameObject rocketStart;
 
     private Vector3 _target;
-
-    // Use this for initialization
+    
     void Start()
     {
         Cursor.visible = false;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         _target = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z));
@@ -29,12 +27,12 @@ public class Player : MonoBehaviour
     void FireRocket()
     {
         GameObject rocketInstance = Instantiate(rocketPrefab, rocketStart.transform.position, Quaternion.Euler(0.0f, 0.0f, 0.0f));
-        RocketController rocketController = rocketInstance.GetComponent<RocketController>();
+        PlayerRocketController playerRocketController = rocketInstance.GetComponent<PlayerRocketController>();
         
-        if (rocketController != null)
+        if (playerRocketController != null)
         {
-            rocketController.SetTarget(_target);
-            rocketController.OnRocketDestroyed += RocketDestroyedHandler;
+            playerRocketController.SetTarget(_target);
+            playerRocketController.OnRocketDestroyed += RocketDestroyedHandler;
         }
     }
 
