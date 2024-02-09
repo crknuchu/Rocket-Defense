@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField]
     private int numberOfAvailableRockets;
+    private Player player;
     
     //private Array availableRockets[numberOfAvailableRockets]; // TODO implement system for storing all rockets
     
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _camera = Camera.main;
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     private void Start()
@@ -47,10 +49,10 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (numberOfAvailableRockets > 0)
+            if (player.GetNumberOfRockets() > 0)
             {
                 FireRocket();
-                numberOfAvailableRockets--;
+                player.DecreaseNumberOfRockets();
             }
             else
             { 
@@ -86,7 +88,7 @@ public class PlayerController : MonoBehaviour
     private void HandleNoRockets()
     {
         Debug.Log("No rockets left, you dimbo!");
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
         //TODO implement feedback to player when they don't have rockets left
     }
 

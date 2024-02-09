@@ -4,9 +4,10 @@ using Random = UnityEngine.Random;
 public class EnemyRocket : MonoBehaviour
 {
     [SerializeField]
-    private float points = 50;
+    private long points = 50;
     [SerializeField]
     private float rocketSpeed = 30f;
+    private Player player;
 
     private Vector2 _spawnPoint;
     private Vector2 _targetPoint;
@@ -18,9 +19,10 @@ public class EnemyRocket : MonoBehaviour
     
     private void Start()
     {
-        _spawnPoint = new Vector2(Random.Range(-10f, 10f), 6f);
+        _spawnPoint = new Vector2(Random.Range(-9f, 9f), 6f);
         _targetPoint = new Vector2(2 * Random.Range(-4, 4), -5); // [-8,-6,...8]
         transform.position = _spawnPoint;
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
     
     private void Update()
@@ -49,19 +51,16 @@ public class EnemyRocket : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, _targetPoint) <= 0)
         {
-            DestroyRocket();
+            Explode();
         }
     }
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        HandleDestroyed();
-    }
 
-    private void HandleDestroyed()
+    public void Explode()
     {
-        DestroyRocket();
+        Destroy(gameObject);
+        //create fireball
     }
+    
     
     private void SpawnTrailParticles()
     {
@@ -70,6 +69,7 @@ public class EnemyRocket : MonoBehaviour
 
     public void DestroyRocket()
     {
+        player.IncreasePlayerScore(this.points);
         Destroy(gameObject);
     }
 }
