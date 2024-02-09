@@ -316,6 +316,7 @@ MonoBehaviour:
   crosshair: {fileID: 198121213}
   rocketPrefab: {fileID: 7279666489302584420, guid: 06216e03bfc9d744cb72722d239690c7, type: 3}
   rocketStart: {fileID: 1014246154}
+  playerScore: 0
   numberOfAvailableRockets: 10
 --- !u!1 &1014246154 stripped
 GameObject:
@@ -336,7 +337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7833689096999362324, guid: 3f57b5e174adcba4897e012608183943, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 7833689096999362324, guid: 3f57b5e174adcba4897e012608183943, type: 3}
       propertyPath: m_LocalPosition.z
