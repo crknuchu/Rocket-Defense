@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        //Cursor.visible = false; // uncomment this when game is finished
+        //Cursor.visible = false; // uncomment this when game is finished, leave it here
     }
 
     private void Update()
@@ -55,6 +55,16 @@ public class Player : MonoBehaviour
             { 
                 HandleNoRockets();
             }
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            // TODO special attack
+            Debug.Log("Special Attack Activated");
+        }
+        if (Input.GetMouseButtonDown(2))
+        {
+            // TODO change rocket type
+            Debug.Log("Rocket Type Changed");
         }
     }
 
