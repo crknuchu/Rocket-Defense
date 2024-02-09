@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyRocketSpawner : MonoBehaviour
@@ -12,15 +10,15 @@ public class EnemyRocketSpawner : MonoBehaviour
     // [SerializeField]
     // private int enemyAmount;
 
-    private IEnumerator spawnEnemyRocket(float spawnRate, GameObject enemyRocket)
+    private IEnumerator SpawnEnemyRocket(float spawnRate, GameObject enemyRocket)
     {
         yield return new WaitForSeconds(spawnRate);
         GameObject newEnemyRocket = Instantiate(enemyRocket);
-        StartCoroutine(spawnEnemyRocket(spawnRate, enemyRocket));
+        StartCoroutine(SpawnEnemyRocket(spawnRate, enemyRocket));
     }
     
     private void Start()
     {
-        StartCoroutine(spawnEnemyRocket(spawnRate, enemyRocket));
+        StartCoroutine(SpawnEnemyRocket(spawnRate, enemyRocket));
     }
 }

@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public GameObject crosshair;
-    public GameObject rocketPrefab;
-    public GameObject rocketStart;
-
-    public long playerScore;
+    public long playerScore = 0;
+    
+    [SerializeField]
+    private GameObject crosshair;
+    [SerializeField]
+    private GameObject rocketPrefab;
+    [SerializeField]
+    private GameObject rocketStart;
     
     [SerializeField]
     private int numberOfAvailableRockets;
