@@ -76,11 +76,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6255618568011058686}
+  - component: {fileID: 8476487107885656138}
   - component: {fileID: 8495140414702993094}
   - component: {fileID: 8806163697346410876}
-  - component: {fileID: 8476487107885656138}
   m_Layer: 0
-  m_Name: P_PlayerRocket
+  m_Name: PB_PlayerRocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,6 +102,22 @@ Transform:
   - {fileID: 8628099628832255356}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8476487107885656138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7279666489302584420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c3c2d45e2eba941900e6f6eaed0722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireballPrefab: {fileID: 6535940909110208999, guid: b60e080474252d541a358c2e6153eae8, type: 3}
+  points: 50
+  _rocketSpeed: 15
+  _blastRadiusSize: 2
 --- !u!212 &8495140414702993094
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -181,17 +197,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8476487107885656138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7279666489302584420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1c3c2d45e2eba941900e6f6eaed0722, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stoppingDistance: 0
-  rocketSpeed: 10

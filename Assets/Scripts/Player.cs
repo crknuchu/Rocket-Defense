@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     public GameObject rocketPrefab;
     public GameObject rocketStart;
 
+    private Vector3 _rocketSpawnPoint;
     private Vector3 _target;
     private Camera _camera;
 
@@ -25,7 +26,8 @@ public class Player : MonoBehaviour
             _target = _camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
                 transform.position.z));
         crosshair.transform.position = new Vector2(_target.x, _target.y);
-
+        _rocketSpawnPoint = rocketStart.transform.position;
+        
         if (Input.GetMouseButtonDown(0))
         {
             FireRocket();
@@ -34,31 +36,19 @@ public class Player : MonoBehaviour
 
     void FireRocket()
     {
-        GameObject rocketInstance = Instantiate(rocketPrefab, rocketStart.transform.position, Quaternion.Euler(0.0f, 0.0f, 0.0f));
+        GameObject rocketInstance = Instantiate(rocketPrefab, _rocketSpawnPoint, Quaternion.Euler(0.0f, 0.0f, 0.0f));
         PlayerRocketController playerRocketController = rocketInstance.GetComponent<PlayerRocketController>();
         
         if (playerRocketController != null)
         {
-            playerRocketController.SetTarget(_target);
+            playerRocketController.SetSpawnPoint(_rocketSpawnPoint);
+            playerRocketController.SetTargetPoint(_target);
             playerRocketController.OnPlayerRocketDestroyed += PlayerRocketDestroyedHandler;
         }
     }
 
-    void PlayerRocketDestroyedHandler(Vector2 rocketExplosionPosition)
+    void PlayerRocketDestroyedHandler()
     {
         Debug.Log("Rocket destroyed");
-        
-        CreateBlastRadius(rocketExplosionPosition, 1);
-    }
-    
-    void CreateBlastRadius(Vector3 position, float blastRadiusSize)
-    {
-        GameObject blastRadiusObject = new GameObject("BlastRadius");
-        blastRadiusObject.transform.position = position;
-        CircleCollider2D circleCollider = blastRadiusObject.AddComponent<CircleCollider2D>();
-        circleCollider.radius = blastRadiusSize;
-        circleCollider.isTrigger = true;
-        BlastRadius blastRadius = blastRadiusObject.AddComponent<BlastRadius>();
-        blastRadius.InitiateBlast();
     }
 }

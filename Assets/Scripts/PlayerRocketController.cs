@@ -1,17 +1,29 @@
+using System;
 using UnityEngine;
 
 public class PlayerRocketController : MonoBehaviour
 {
-    public float rocketSpeed = 30f;
-
-    public delegate void PlayerRocketDestroyedDelegate(Vector2 rocketPosition);
+    public GameObject fireballPrefab;
+    
+    public float points = 50;
+    private Vector2 _spawnPoint;
+    private Vector2 _targetPoint;
+    [SerializeField]
+    private float _rocketSpeed = 30f;
+    [SerializeField]
+    private float _blastRadiusSize = 1f;
+    
+    public delegate void PlayerRocketDestroyedDelegate();
     public event PlayerRocketDestroyedDelegate OnPlayerRocketDestroyed;
-
-    private Vector2 _targetPosition;
-
-    public void SetTarget(Vector3 target)
+    
+    public void SetSpawnPoint(Vector3 spawnPoint)
     {
-        _targetPosition = target;
+        _spawnPoint = spawnPoint;
+    }
+    
+    public void SetTargetPoint(Vector3 target)
+    {
+        _targetPoint = target;
     }
 
     void Update()
@@ -22,26 +34,32 @@ public class PlayerRocketController : MonoBehaviour
     void MoveRocket()
     {
         Vector2 rocketPosition = transform.position;
-        Vector2 direction = _targetPosition - rocketPosition;
+        Vector2 direction = _targetPoint - rocketPosition;
         
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
-        transform.position = Vector3.MoveTowards(rocketPosition, _targetPosition, rocketSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(rocketPosition, _targetPoint, _rocketSpeed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.position, _targetPosition) <= 0)
+        if (Vector3.Distance(transform.position, _targetPoint) <= 0)
         {
-            //Debug.Log("Rocket position: " + transform.position);
-            //Debug.Log("Target position: " + targetPosition);
-            //Debug.Log("Move: " + rocketSpeed * Time.deltaTime);
+            CreateFireball();
             DestroyRocket();
         }
+    }
+
+    private void CreateFireball()
+    {
+        GameObject fireballInstance = Instantiate(fireballPrefab, _targetPoint, Quaternion.identity);
+        Fireball fireball = fireballInstance.GetComponent<Fireball>();
+        CircleCollider2D circleCollider = fireball.GetComponent<CircleCollider2D>();
+        circleCollider.radius = _blastRadiusSize;
     }
 
     void DestroyRocket()
     {
         if (OnPlayerRocketDestroyed != null)
         {
-            OnPlayerRocketDestroyed(transform.position);
+            OnPlayerRocketDestroyed();
         }
         
         Destroy(gameObject);
