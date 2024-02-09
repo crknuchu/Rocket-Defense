@@ -15,4 +15,10 @@ public class Fireball : MonoBehaviour
     {
         Destroy(gameObject, destroyDelay);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //TODO implement what happens when an object collides with fireball
+        throw new NotImplementedException();
+    }
 }

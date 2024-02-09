@@ -1,20 +1,23 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerRocketController : MonoBehaviour
 {
     public GameObject fireballPrefab;
     
+    [SerializeField]
     public float points = 50;
+    [SerializeField]
+    private float rocketSpeed = 30f;
+    [SerializeField]
+    private float blastRadiusSize = 4.5f;
+    
     private Vector2 _spawnPoint;
     private Vector2 _targetPoint;
-    [SerializeField]
-    private float _rocketSpeed = 30f;
-    [SerializeField]
-    private float _blastRadiusSize = 1f;
     
     //public delegate void PlayerRocketDestroyedDelegate();
-   // public event PlayerRocketDestroyedDelegate OnPlayerRocketDestroyed;
+    //public event PlayerRocketDestroyedDelegate OnPlayerRocketDestroyed;
     
     public void SetSpawnPoint(Vector3 spawnPoint)
     {
@@ -26,20 +29,30 @@ public class PlayerRocketController : MonoBehaviour
         _targetPoint = target;
     }
 
-    void Update()
+    private void Update()
     {
-        MoveRocket();
+        HandleRocketMovement();
     }
 
-    void MoveRocket()
+    void HandleRocketMovement()
+    {
+        MoveRocket();
+        SpawnTrailParticles();
+        CheckIfTargetReached();
+    }
+
+    private void MoveRocket()
     {
         Vector2 rocketPosition = transform.position;
         Vector2 direction = _targetPoint - rocketPosition;
         
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
-        transform.position = Vector3.MoveTowards(rocketPosition, _targetPoint, _rocketSpeed * Time.deltaTime);
-
+        transform.position = Vector3.MoveTowards(rocketPosition, _targetPoint, rocketSpeed * Time.deltaTime);
+    }
+    
+    private void CheckIfTargetReached()
+    {
         if (Vector3.Distance(transform.position, _targetPoint) <= 0)
         {
             CreateFireball();
@@ -52,7 +65,12 @@ public class PlayerRocketController : MonoBehaviour
         GameObject fireballInstance = Instantiate(fireballPrefab, _targetPoint, Quaternion.identity);
         Fireball fireball = fireballInstance.GetComponent<Fireball>();
         CircleCollider2D circleCollider = fireball.GetComponent<CircleCollider2D>();
-        circleCollider.radius = _blastRadiusSize;
+        circleCollider.radius = blastRadiusSize;
+    }
+
+    private void SpawnTrailParticles()
+    {
+        //TODO implement smoke trail
     }
 
     void DestroyRocket()
