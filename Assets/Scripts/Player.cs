@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
         {
             playerRocketController.SetSpawnPoint(_rocketSpawnPoint);
             playerRocketController.SetTargetPoint(_target);
-            playerRocketController.OnPlayerRocketDestroyed += PlayerRocketDestroyedHandler;
+            //playerRocketController.OnPlayerRocketDestroyed += PlayerRocketDestroyedHandler;
         }
     }
 

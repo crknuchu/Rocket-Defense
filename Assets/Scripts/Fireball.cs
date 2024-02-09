@@ -11,7 +11,7 @@ public class Fireball : MonoBehaviour
         InitiateBlast();
     }
 
-    public void InitiateBlast()
+    private void InitiateBlast()
     {
         Destroy(gameObject, destroyDelay);
     }

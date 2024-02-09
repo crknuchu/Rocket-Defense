@@ -13,8 +13,8 @@ public class PlayerRocketController : MonoBehaviour
     [SerializeField]
     private float _blastRadiusSize = 1f;
     
-    public delegate void PlayerRocketDestroyedDelegate();
-    public event PlayerRocketDestroyedDelegate OnPlayerRocketDestroyed;
+    //public delegate void PlayerRocketDestroyedDelegate();
+   // public event PlayerRocketDestroyedDelegate OnPlayerRocketDestroyed;
     
     public void SetSpawnPoint(Vector3 spawnPoint)
     {
@@ -57,10 +57,12 @@ public class PlayerRocketController : MonoBehaviour
 
     void DestroyRocket()
     {
+        /*
         if (OnPlayerRocketDestroyed != null)
         {
             OnPlayerRocketDestroyed();
         }
+        */
         
         Destroy(gameObject);
     }
