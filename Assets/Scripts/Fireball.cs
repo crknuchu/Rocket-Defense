@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Fireball : MonoBehaviour
@@ -19,7 +17,7 @@ public class Fireball : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        EnemyRocket enemyRocket = other.GetComponent<EnemyRocket>();
+        var enemyRocket = other.GetComponent<EnemyRocket>();
         enemyRocket.DestroyRocket();
     }
 }

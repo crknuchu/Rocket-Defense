@@ -1,13 +1,12 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PlayerRocketController : MonoBehaviour
 {
-    public GameObject fireballPrefab;
+    [SerializeField]
+    private GameObject fireballPrefab;
     
     [SerializeField]
-    public float points = 50;
+    private float points = 50;
     [SerializeField]
     private float rocketSpeed = 30f;
     [SerializeField]
@@ -18,6 +17,11 @@ public class PlayerRocketController : MonoBehaviour
     
     //public delegate void PlayerRocketDestroyedDelegate(Vector2 position);
     //public event PlayerRocketDestroyedDelegate OnPlayerRocketDestroyed;
+
+    public float GetRocketPoints()
+    {
+        return this.points;
+    }
     
     public void SetSpawnPoint(Vector3 spawnPoint)
     {
@@ -44,9 +48,9 @@ public class PlayerRocketController : MonoBehaviour
     private void MoveRocket()
     {
         Vector2 rocketPosition = transform.position;
-        Vector2 direction = _targetPoint - rocketPosition;
+        var direction = _targetPoint - rocketPosition;
         
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
         transform.position = Vector3.MoveTowards(rocketPosition, _targetPoint, rocketSpeed * Time.deltaTime);
     }

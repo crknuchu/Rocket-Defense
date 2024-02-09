@@ -1,18 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class EnemyRocket : MonoBehaviour
 {
     [SerializeField]
-    public float points = 50;
+    private float points = 50;
     [SerializeField]
     private float rocketSpeed = 30f;
 
     private Vector2 _spawnPoint;
     private Vector2 _targetPoint;
+    
+    public float GetRocketPoints()
+    {
+        return this.points;
+    }
     
     private void Start()
     {
@@ -21,28 +23,28 @@ public class EnemyRocket : MonoBehaviour
         transform.position = _spawnPoint;
     }
     
-    private void MoveRocket()
+    private void Update()
     {
-        Vector2 rocketPosition = transform.position;
-        Vector2 direction = _targetPoint - rocketPosition;
-        
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
-        transform.position = Vector3.MoveTowards(rocketPosition, _targetPoint, rocketSpeed * Time.deltaTime);
+        HandleRocketMovement();
     }
     
     private void HandleRocketMovement()
     {
         MoveRocket();
-        // SpawnTrailParticles();
+        SpawnTrailParticles();
         CheckIfTargetReached();
     }
     
-    public void DestroyRocket()
+    private void MoveRocket()
     {
-        Destroy(gameObject);
+        Vector2 rocketPosition = transform.position;
+        var direction = _targetPoint - rocketPosition;
+        
+        var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
+        transform.position = Vector3.MoveTowards(rocketPosition, _targetPoint, rocketSpeed * Time.deltaTime);
     }
-    
+
     private void CheckIfTargetReached()
     {
         if (Vector3.Distance(transform.position, _targetPoint) <= 0)
@@ -53,16 +55,21 @@ public class EnemyRocket : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        handleDestroyed();
+        HandleDestroyed();
     }
 
-    private void handleDestroyed()
+    private void HandleDestroyed()
     {
         DestroyRocket();
     }
-
-    private void Update()
+    
+    private void SpawnTrailParticles()
     {
-        HandleRocketMovement();
+        //TODO implement smoke trail
+    }
+
+    public void DestroyRocket()
+    {
+        Destroy(gameObject);
     }
 }
