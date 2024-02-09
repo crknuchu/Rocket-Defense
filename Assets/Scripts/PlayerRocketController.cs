@@ -16,7 +16,7 @@ public class PlayerRocketController : MonoBehaviour
     private Vector2 _spawnPoint;
     private Vector2 _targetPoint;
     
-    //public delegate void PlayerRocketDestroyedDelegate();
+    //public delegate void PlayerRocketDestroyedDelegate(Vector2 position);
     //public event PlayerRocketDestroyedDelegate OnPlayerRocketDestroyed;
     
     public void SetSpawnPoint(Vector3 spawnPoint)
@@ -34,7 +34,7 @@ public class PlayerRocketController : MonoBehaviour
         HandleRocketMovement();
     }
 
-    void HandleRocketMovement()
+    private void HandleRocketMovement()
     {
         MoveRocket();
         SpawnTrailParticles();
@@ -73,12 +73,12 @@ public class PlayerRocketController : MonoBehaviour
         //TODO implement smoke trail
     }
 
-    void DestroyRocket()
+    private void DestroyRocket()
     {
         /*
         if (OnPlayerRocketDestroyed != null)
         {
-            OnPlayerRocketDestroyed();
+            OnPlayerRocketDestroyed(_target);
         }
         */
         

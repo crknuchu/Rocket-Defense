@@ -7,8 +7,12 @@ public class Player : MonoBehaviour
     public GameObject rocketPrefab;
     public GameObject rocketStart;
 
+    public long playerScore;
+    
     [SerializeField]
     private int numberOfAvailableRockets;
+    
+    //private Array availableRockets[numberOfAvailableRockets]; // TODO implement system for storing all rockets
     
     private Vector3 _rocketSpawnPoint;
     private Vector3 _target;
@@ -75,7 +79,7 @@ public class Player : MonoBehaviour
         //TODO implement feedback to player when they don't have rockets left
     }
 
-    private void PlayerRocketDestroyedHandler()
+    private void PlayerRocketDestroyedHandler(Vector2 position)
     {
         Debug.Log("Rocket destroyed");
     }
