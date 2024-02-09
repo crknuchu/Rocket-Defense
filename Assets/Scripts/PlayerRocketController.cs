@@ -4,8 +4,8 @@ public class PlayerRocketController : MonoBehaviour
 {
     public float rocketSpeed = 30f;
 
-    public delegate void RocketDestroyedDelegate();
-    public event RocketDestroyedDelegate OnRocketDestroyed;
+    public delegate void PlayerRocketDestroyedDelegate(Vector2 rocketPosition);
+    public event PlayerRocketDestroyedDelegate OnPlayerRocketDestroyed;
 
     private Vector2 _targetPosition;
 
@@ -39,10 +39,11 @@ public class PlayerRocketController : MonoBehaviour
 
     void DestroyRocket()
     {
-        Destroy(gameObject);
-        if (OnRocketDestroyed != null)
+        if (OnPlayerRocketDestroyed != null)
         {
-            OnRocketDestroyed();
+            OnPlayerRocketDestroyed(transform.position);
         }
+        
+        Destroy(gameObject);
     }
 }
