@@ -6,12 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c63294b1-dee4-4595-a04c-61767f675b13" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Rocket Defense/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Rocket Defense/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DevRooms/BeliDevRoom.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DevRooms/BeliDevRoom.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/DevRooms/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DevRooms/TestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyRocketController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyRocketController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Prefabs/PB_EnemyRocket.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Prefabs/PB_EnemyRocket.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainBuilding.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainBuilding.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Prefabs/Buildings.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Prefabs/Buildings.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +101,7 @@
       <updated>1707466480979</updated>
       <workItem from="1707466483405" duration="9006000" />
       <workItem from="1707512687528" duration="1838000" />
-      <workItem from="1707515162666" duration="4804000" />
+      <workItem from="1707515162666" duration="5947000" />
     </task>
     <servers />
   </component>

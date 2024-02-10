@@ -5,7 +5,7 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour
 {
 
-    private bool _levelOver = false;
+    // private bool _levelOver = false;
     private void OnTriggerEnter2D(Collider2D other)
     {
         EnemyRocket rocket = other.GetComponent<EnemyRocket>();
@@ -16,6 +16,6 @@ public class NewBehaviourScript : MonoBehaviour
     private void DestroyBuilding()
     {
         gameObject.SetActive(false);
-        _levelOver = true;
+        // _levelOver = true;
     }
 }

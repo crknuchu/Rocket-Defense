@@ -8,6 +8,7 @@ public class EnemyRocket : MonoBehaviour
     [SerializeField]
     private float rocketSpeed = 30f;
     private Player player;
+    [SerializeField] private GameObject fireballPrefab;
 
     private Vector2 _spawnPoint;
     private Vector2 _targetPoint;
@@ -55,9 +56,17 @@ public class EnemyRocket : MonoBehaviour
         }
     }
 
+    private void CreateFireball()
+    {
+        GameObject fireballInstance = Instantiate(fireballPrefab, _targetPoint, Quaternion.identity);
+        Fireball fireball = fireballInstance.GetComponent<Fireball>();
+    }
+    
     public void Explode()
     {
+        
         Destroy(gameObject);
+        CreateFireball();
         //create fireball
     }
     

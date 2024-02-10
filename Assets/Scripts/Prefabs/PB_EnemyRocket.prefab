@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 50
   rocketSpeed: 5
-  player: {fileID: 3859164569405940203, guid: 2bf7f0c6263e4a64aa4e08107589281b, type: 3}
+  fireballPrefab: {fileID: 6535940909110208999, guid: b60e080474252d541a358c2e6153eae8, type: 3}
 --- !u!70 &16405038581893716
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
